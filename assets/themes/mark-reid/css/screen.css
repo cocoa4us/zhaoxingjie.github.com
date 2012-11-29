@@ -74,7 +74,6 @@ sup { line-height: 1ex; }
 	background: white;
 /*	background-image: url(grid.png); */
 	padding: 2em 3em;
-	border: 1px solid #D2D6DC;
 }
 
 #disqus_thread { padding-top: 0; }
@@ -363,7 +362,6 @@ pre > code {
 
 /* @group Disqus */
 #disqus_thread {
-	margin-top: 2.93em;
 }
 .dsq-comment-body {
 	text-align: justify;
