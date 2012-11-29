@@ -22,7 +22,7 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,p,blockquote,th,t
 
 body {
 	font-family: Palatino, georgia, "times new roman", serif;
-	background-color: #E7EBF2;
+	background-color: #000;
 	background-position: center -18em;
 	background-repeat: repeat-x; 
 }
@@ -73,7 +73,7 @@ sup { line-height: 1ex; }
 #page, #disqus_thread {
 	background: white;
 /*	background-image: url(grid.png); */
-	padding: 3em 3em 1.5em 3em;
+	padding: 2em 3em;
 	border: 1px solid #D2D6DC;
 }
 
@@ -155,14 +155,10 @@ caption {
 
 /* @group Lists */
 ul {
-	margin-top: 1.5em;
-	margin-bottom: 1.5em;
 	line-height: 1.5em;
-	padding-left: 1.5em;
+    list-style:none;
 }
 ul li {
-	list-style-type: square;
-	list-style-position: outside;
 }
 ol li {
 	list-style-type: decimal;
@@ -187,7 +183,7 @@ ul.compact li a {
 /* @end */
 
 /* @group Header */
-#header, #header a { color: #3B5998; }
+#header, #header a { color: #fff; }
 #header .hover { color: transparent; }
 /*
 #header:hover a { color: black; text-shadow: #aaa 2px 2px 3px;}
@@ -213,7 +209,7 @@ ul.compact li a {
 	position: absolute;
 	top: 0;
 	right: 0;
-	font-size: 100%;
+	font-size: 14px;
 	line-height: 1.6em;
 	display: block;
 	margin: 0;
@@ -451,7 +447,7 @@ p.delicious-extended:before { content: ' — '; }
 /* @group Footer */
 #footer {
 	margin-top: 0;
-	color: grey;
+	color: #C5CCDC;
 	font-size: 87.5%;
 	line-height: 1.3em;
 }
@@ -463,8 +459,16 @@ p.delicious-extended:before { content: ' — '; }
 #footer a {
 	font-variant: small-caps;
 	font-style: normal;
-	color: #77d;
+	color: #C5CCDC;
 	text-decoration: none;
+}
+#footer a:visited {
+	color: #C5CCDC;
+	text-decoration: none;
+}
+#footer a:hover {
+	color: #3B5998;
+	text-decoration: underline;
 }
 #footer .copyright {
 	position: absolute;
