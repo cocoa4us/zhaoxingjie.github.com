@@ -22,7 +22,7 @@ body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,p,blockquote,th,t
 
 body {
 	font-family: Palatino, georgia, "times new roman", serif;
-	background-color: #092e20;
+	background-color: #E7EBF2;
 	background-position: center -18em;
 	background-repeat: repeat-x; 
 }
@@ -65,7 +65,7 @@ hr {
 sup { line-height: 1ex; }
 
 #site {
-	max-width: 46em;
+	max-width: 42em;
 	margin: 1.5em auto 3em auto;
 	line-height:1.5em;
 }
@@ -74,14 +74,7 @@ sup { line-height: 1ex; }
 	background: white;
 /*	background-image: url(grid.png); */
 	padding: 3em 3em 1.5em 3em;
-	border: 1px solid #ccc;
-}
-
-/* More experimental CSS3 features */
-#page, #disqus_thread {
-	box-shadow: 2px 2px 8px #aaa;
-	-webkit-box-shadow: 2px 2px 8px #aaa;
-	-moz-box-shadow: 2px 2px 8px #aaa;	
+	border: 1px solid #D2D6DC;
 }
 
 #disqus_thread { padding-top: 0; }
@@ -194,7 +187,7 @@ ul.compact li a {
 /* @end */
 
 /* @group Header */
-#header, #header a { color: silver; }
+#header, #header a { color: #3B5998; }
 #header .hover { color: transparent; }
 /*
 #header:hover a { color: black; text-shadow: #aaa 2px 2px 3px;}
