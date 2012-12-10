@@ -1,2 +1,0 @@
-##Bash内直接打开目标数据库：
-    alias mszarkpy = 'mysql -uroot --default-character-set=utf8 --database zarkpy'
