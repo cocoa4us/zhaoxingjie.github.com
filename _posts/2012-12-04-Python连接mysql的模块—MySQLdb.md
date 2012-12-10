@@ -75,6 +75,18 @@ layout: post
         print r 
 
 ##默认MySQLdb返回的是元组，不利于维护，解决如下：
+    #默认返回的是元组，元组是有序的，如：
+    #fetchone()返回(1L, u'sdjllyh@gmail.com', u'36f2e8ddb694bcfbfceb638a5edd8d98', 
+     u'\u5218\u6c38\u8f89', u'/img/user/cover/1.jpg', datetime.date(1985, 10, 17), 
+     878738031L, datetime.datetime(2012, 1, 11, 15, 31, 21), 0L)
+    #fetchmany(3)返回(1L,...) (2L,...) (3L,...)
+
+    #只select一个字段时
+    cursor.execute('select id from User')
+    result = cursor.fetchone()
+    print result #返回（97L,)
+    print result[0] #返回97
+
     import MySQLdb, MySQLdb.cursors
     conn = MySQLdb.connect(host='localhost', user='root', db='aoaola', passwd='', 
     compress=1, cursorclass=MySQLdb.cursors.DictCursor, charset='utf8')
@@ -88,4 +100,23 @@ layout: post
     conn = MySQLdb.connect(host='localhost', user='root', db='aoaola', passwd='', 
     compress=1, charset='utf8')
     cursor =conn.cursor(cursorclass=MySQLdb.cursors.DictCursor)
+
+    #增加以上cursorclass后，返回的是字典，字典是无序的
+    #fetchone()返回{'phone_number': u'1381167635411', 
+     'email': u'sdjllyh@gmail.com', 'username': u'SDJL2', 
+     'Userid': 1L, 'cover_url': u'/img/user/cover/1.jpg', 
+     'birthday': datetime.date(1985, 10, 17), 'login_ip': 878738031L, 
+     'password': u'36f2e8ddb694bcfbfceb638a5edd8d98'}
+    #fetchmany(3)返回{...} {...} {...}
+    
+    #只select一个字段时
+    cursor.execute('select id from User')
+    result = cursor.fetchone()
+    print result #返回{'Userid': 97L}
+    print result['Userid'] #返回97
+
+
+
+
+
 
