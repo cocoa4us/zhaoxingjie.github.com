@@ -32,7 +32,7 @@ img { -ms-interpolation-mode:bicubic; }
 
 /* IE6 ignores this and uses default size of 16pt */
 html>body { font-size:16px; }
-p { text-align: justify; font-size:13px; }
+p { text-align: justify; font-size:13px; color:#333; }
 
 a { text-decoration: none; color: #339; }
 a:hover { text-decoration: underline; color: #33f; }
@@ -52,7 +52,9 @@ h2 {
 	font-size: 100%;
 	line-height: 1.5em;
 	margin:1.5em 0 1.5em 0;
-	font-weight:bold;
+	font-weight:bold; 
+    padding-bottom: 5px;
+    border-bottom: 1px solid #EEE;
 }
 
 hr { 
@@ -65,7 +67,7 @@ hr {
 sup { line-height: 1ex; }
 
 #site {
-	max-width: 48em;
+	max-width: 52em;
 	margin: 1.5em auto 3em auto;
 	line-height:1.5em;
 }
@@ -161,6 +163,7 @@ ul {
 }
 ul li {
     margin-bottom: 0.3em;
+    color:#333;
 }
 ol li {
 	list-style-type: decimal;
@@ -336,21 +339,20 @@ pre {
 	margin: 1em 0 1.5em 0;
 	font-size: 0.75em; /* Hack to make code look same size as body font */  
 	line-height: 1.5em;	
-	color: #111;
+	color: #333;
 	background: #f4f8f8;
 	border: 1px solid #ddc;
-	padding: 0.5em 1em;
+	padding: 1em;
 	overflow: hidden;
 }
 pre:hover {
-	border-right: none;
 	overflow: visible;
 }
 code {
     font-family: Consolas, "Liberation Mono", Courier, monospace;
 	font-size: 1em;
 	background-color: #f7f7ff;
-	line-height: 1.4em;
+	line-height: 19px;
 }
 pre > code {
 	background-color: transparent;

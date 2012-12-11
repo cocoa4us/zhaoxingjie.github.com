@@ -154,21 +154,37 @@ MyISAM：不支持事务和并发。表结构存在.frm文件中，.myd存储数
     desc User;
     show columns from User;
     show create table table_name;   #查看创建表的详细结构语句
+    show create table table_name\G;   #查看创建表的详细结构语句
+
 
 ##修改表：
 
     ALTER TABLE 旧表名 RENAME [TO] 新表名;  #修改表名
+    RENAME TABLE 原表名 TO 新表名;    #修改表名
+
+
     ALTER TABLE 表名 MODIFY 属性名 数据类型;    #修改字段的数据类型
+    ALTER TABLE 表名 CHANGE 旧属性名 新属性名 新数据类型   #修改字段名及数据类型
+    ALTER TABLE 表名 ADD 属性名1 数据类型 [完整性约束条件] [FIRST | AFTER 属性名2];    #增加字段
+    ALTER TABLE 表名 DROP 属性名    #删除字段
+
+    ALTER TABLE 表名 ENGINE=INNODB | MYISAM | MEMOERY;   #更改表的存储引擎
+
+    ALTER TABLE 表名 DROP FOREIGN KEY 外键别名;   #删除表的外键约束
+
+##删除表
+    DROP TABLE 表名;   #删除没有被关联的普通表
+
+    #删除被其他表关联的父表
+    DROP TABLE 表名;    #直接删除会报错
+    ALTER TABLE 表名 DROP FOREIGN KEY 外键别名;   #需要先删除其他表的外键约束
+    DROP TABLE 表名;
+
 
 ##常用操作
 
 
 查询记录：select * from User;
-
-
-建库：create database database_name;
-
-建表：create table table_name(字段设定列表)
 
 增加记录：insert into User values('','','')
 
@@ -180,14 +196,26 @@ MyISAM：不支持事务和并发。表结构存在.frm文件中，.myd存储数
 
 清空表：delete from User;
 
-删除库：drop database database_name;
-
-删除表：drop table table_name;
-
 在表中增加字段：alter table 表名 add 字段 类型 其他; 
                 alter table User add test int(4) default '0'
 
-更改表名：rename table 原表名 to 新表名
+##索引
+Mysql中所有数据类型都可以被索引。
+
+分类：普通索引，唯一性索引，全文索引，单列索引，多列索引，空间索引。
+
+优点：提高查询、分级和排序的时间。
+
+缺点：占空间，创建、更新记录时额外耗费时间。
+
+使用原则:
++ 选择唯一性索引
++ 为经常需要排序、分组、联合操作的字段建立索引，如ORDER BY,GROUP BY,DISTINCT,UNION等操作的字段
++ 为经常作为查询条件的字段建立索引（WHERE）
++ 限制索引数目，避免过多的浪费空间
++ 尽量使用数据量少的索引
++ 删除不再使用或很少使用的索引
+
 
 ##增加Mysql用户
 格式：grant select on 数据库.* to 用户名@登录主机 identified by "密码" 
