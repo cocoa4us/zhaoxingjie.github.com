@@ -32,7 +32,7 @@ img { -ms-interpolation-mode:bicubic; }
 
 /* IE6 ignores this and uses default size of 16pt */
 html>body { font-size:16px; }
-p { margin: 0 0 0.5em 0; text-align: justify; }
+p { text-align: justify; font-size:13px; }
 
 a { text-decoration: none; color: #339; }
 a:hover { text-decoration: underline; color: #33f; }
@@ -155,9 +155,12 @@ caption {
 /* @group Lists */
 ul {
 	line-height: 1.5em;
-    list-style:none;
+    list-style-type:square;
+    font-size:13px;
+    padding-left:20px;
 }
 ul li {
+    margin-bottom: 0.3em;
 }
 ol li {
 	list-style-type: decimal;

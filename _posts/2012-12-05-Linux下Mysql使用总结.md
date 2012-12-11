@@ -1,13 +1,45 @@
 ---
 layout: post
 ---
-##Bash内直接打开目标数据库：
-    alias mszarkpy = 'mysql -uroot --default-character-set=utf8 --database zarkpy'
+
+##数据存储方式
+人工管理-文件系统-数据库系统
+
+##数据库范型
+数据库应该遵循的规则,也称为范式。最常用的4种范式：第一范式，第二范式，第三范式，BCN范式。
+
+##SQL语法组成：
+全称为结构化查询语言（Structured Query Language)，数据库管理系统通过SQL语言管理数据库中的数据。
+
+分为3个部分：
+- 数据定义语言：CREATE TABLE、 DROP TABLE、 ALTER TABLE
+- 数据操作语言：查询、插入、删除、修改（SELECT、INSERT、DELETE、UPDATE）
+- 数据控制语言：存取许可、存取权限（GRANT、REVOKE）
+
+##常见数据库系统
+- 甲骨文的Oracle
+- IBM的DB2
+- 微软的Access和SQL Server
+- 开源PostgreSQL
+- 开源MySQL
+- 文件数据库SQLite
+- 内存数据库HQL
+
+##Mysql数据类型
+- 整数类型：整型可以由十进制和十六进制表示。十六进制：0x[1-9A-F],0x中的x必须小写。包括tinyint,smallint,mediumint,int,bigint。
+- 浮点数：float,double,decimal(m,d)。decimal(6,2)定义的数字如1234.56，指总长6位，小数点后精确到2位。
+- 字符串:char定长，varchar(m)不定长,tinytext，text，mediumtext，longtext。
+- 日期和时间：year年，date日期，time时间，datetime时间，timestamp时间。
+- 二进制：binary(m),varbinary(m),bit(m),tinyblob,blob,mediumblob,longdlob。
+- NULL值。
 
 ##登录语法： 
     mysql [-u username] [-h host] [-p[password]] [dbname] 
     #示例：(初始管理帐号是root，没有密码）
     mysql -uroot -hlocalhost -p123456 zarkpy
+
+##Bash内直接打开目标数据库：
+    alias mszarkpy = 'mysql -uroot --default-character-set=utf8 --database zarkpy'
 
 ##mysql的几个重要目录：
 mysql的数据库文件、配置文件、命令文件分别在不同的目录。
@@ -32,16 +64,104 @@ mysql的数据库文件、配置文件、命令文件分别在不同的目录。
 
 停止：/usr/bin/mysqladmin -u root -p shutdown 
 
+##操作数据库
+    create database database_name;    #创建数据库
+    show databases;    #显示所有数据库
+    use database_name;    #打开某个数据库
+    select database();    #查看当前使用的数据库
+    drop database [if exist] database_name;    #删除，给出if exists子句，删除不存在的数据库时不会出错。
+
+
+##数据库存储引擎
+innoDB：支持事务，回滚，外键约束、崩溃恢复。表结构存在.frm文件中，数据和索引存在表空间中，读写效率稍差，占用空间大。
+
+MyISAM：不支持事务和并发。表结构存在.frm文件中，.myd存储数据，.myi存储索引。快速，占用空间小，成熟稳定，易于管理。
+
+    #在创建一个新的MySQL数据表时，可以为它设置存储引擎:
+    create table tmp(…)ENGINE=MyISAM
+
+    show engines \G;    #当前mysql支持的所有engine，row列表形式显示
+    show engines;    #当前mysql支持的所有engine，表格形式显示
+    show variables like '%engine%';    #查看当前库的engine
+
+##创建、修改和删除表
+    show tables   #显示数据库中的所有表
+
+    #在当前数据库中创建表：
+    create table 表名(
+       列名1 数据类型 [<列的完整性约束>],
+       列名2 数据类型 [<列的完整性约束>],
+       ...
+    );
+
+    #建立一个表school,其由两列组成，第一列属性为非空，并做为主键,并自增:
+    create table school(
+       id int(10) not null auto_increment primary key,
+       name varchar(20)
+    );
+
+完整性约束条件表：
+- PRIMARY  KEY       主键
+- FOREIGN  KEY       外键
+- UNIQUE             唯一性约束
+- NOT  NULL          不能为空          
+- AUTO_INCREMENT     整数列默认自增1
+- DEFAULT default_value       默认值约束
+- UNSIGNED    无符号整数
+- DEFAULT cur_timestamp 创建新记录时默认保存当前时间（仅适用timestamp数据列）
+- ON UPDATE cur_timestamp 修改记录时默认保存当前时间（仅适用timestamp数据列）
+- CHARACTER SET name 指定字符集（仅适用字符串）
+
+
+完整性约束示例:
+
+    #设置表的单字段主键：属性名 数据类型 PRIMARY KEY
+    create table school(
+       id int(10) primary key,
+       name varchar(20)
+    );
+
+    #设置表的多字段主键：PRIMARY KEY(属性名1,属性名2,属性名3...)
+    create table school(
+       id int(10),
+       name varchar(20),
+       primary key(id,name)
+    );
+
+    #设置表的外键：FOREIGN KEY(属性名1,属性名2...) REFERENCES 表名(属性名1,属性名2...)
+    create table score(
+       cid int(10) not null auto_increment primary key,
+       score int, 
+       sid int,
+       foreign key(sid) references student(sid)
+       #定义外键别名
+       #constraint score_foreign foreign key(sid) references student(sid)
+    );
+
+    #设置表的非空约束：属性名 数据类型 NOT NULL
+    #设置表的唯一性约束：属性名 数据类型 UNIQUE
+    #设置表的属性值自动增加：属性名 数据类型 AUTO_INCREMENT
+    #设置表的属性的默认值：属性名 数据类型 DEFAULT 默认值
+    create table school(
+       id int(10) not null auto_increment primary key,
+       name varchar(200)  charset utf8 not null default '',
+
+    );
+
+显示表结构：
+
+    describe User;
+    desc User;
+    show columns from User;
+    show create table table_name;   #查看创建表的详细结构语句
+
+修改表：
+
+    ALTER TABLE 旧表名 RENAME [TO] 新表名;  #修改表名
+    ALTER TABLE 表名 MODIFY 属性名 数据类型;    #修改字段的数据类型
+
 ##常用操作
-显示数据库:show databases;
 
-打开数据库：use xxx_database;
-
-查看当前使用的数据库：select database();
-
-显示表：show tables;
-
-显示表结构：describe User; desc User; show columns from User;
 
 查询记录：select * from User;
 
