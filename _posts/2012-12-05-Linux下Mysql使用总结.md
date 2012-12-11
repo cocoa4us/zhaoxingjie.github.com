@@ -84,7 +84,7 @@ MyISAM：不支持事务和并发。表结构存在.frm文件中，.myd存储数
     show engines;    #当前mysql支持的所有engine，表格形式显示
     show variables like '%engine%';    #查看当前库的engine
 
-##创建、修改和删除表
+##创建表
     show tables   #显示数据库中的所有表
 
     #在当前数据库中创建表：
@@ -148,14 +148,14 @@ MyISAM：不支持事务和并发。表结构存在.frm文件中，.myd存储数
 
     );
 
-显示表结构：
+##显示表结构：
 
     describe User;
     desc User;
     show columns from User;
     show create table table_name;   #查看创建表的详细结构语句
 
-修改表：
+##修改表：
 
     ALTER TABLE 旧表名 RENAME [TO] 新表名;  #修改表名
     ALTER TABLE 表名 MODIFY 属性名 数据类型;    #修改字段的数据类型
