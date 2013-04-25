@@ -168,6 +168,8 @@ MyISAM：不支持事务和并发。表结构存在.frm文件中，.myd存储数
 
     ALTER TABLE 表名 DROP FOREIGN KEY 外键别名;   #删除表的外键约束
 
+    ALTER TABLE 表名 DROP INDEX 字段名;    #删除某个表中某个字段的unique key
+
 ##删除表
     DROP TABLE 表名;   #删除没有被关联的普通表
 
@@ -183,6 +185,8 @@ MyISAM：不支持事务和并发。表结构存在.frm文件中，.myd存储数
 查询记录：select * from User;
 
 增加记录：insert into User values('','','')
+
+只增加某些字段的记录：insert into table_name (col1,col2) values (col1,col2); 
 
 增加多条记录：insert into User values('','',''),('','',''),('','','')
 
