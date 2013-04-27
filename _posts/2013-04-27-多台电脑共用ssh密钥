@@ -1,0 +1,14 @@
+---
+layout: post
+---
+
+新的机子使用git，提示需要配置ssh密钥。
+另一台机子也还在使用，做下笔记：
+    $ ssh-keygen -t rsa   #命令行运行该命令，连续3次回车即可，在~/.ssh中生成id_rsa,id_rsa.pub
+    #备份id_rsa,id_rsa.pub
+    scp username@old_computer_ip:/home/username/.ssh/id_rsa ~/.ssh/     #复制旧机子上的密钥
+    scp username@old_computer_ip:/home/username/.ssh/id_rsa.pub ~/.ssh/
+
+
+
+
