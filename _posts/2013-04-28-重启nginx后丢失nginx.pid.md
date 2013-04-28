@@ -10,6 +10,6 @@ layout: post
 
 解决方案：
 
-    "nginx -s reload is only used to tell a running nginx process to reload its config. After a stop, you don't have a running nginx process to send a signal to. Just run nginx (possibly with a -c /path/to/config/file)"
+"nginx -s reload is only used to tell a running nginx process to reload its config. After a stop, you don't have a running nginx process to send a signal to. Just run nginx (possibly with a -c /path/to/config/file)"
 
-    也就是sudo nginx -c /usr/local/etc/nginx/nginx.conf
+    sudo nginx -c /usr/local/etc/nginx/nginx.conf
