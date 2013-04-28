@@ -633,3 +633,10 @@ root用户密码丢失的解决办法
 
 ##MySQL 日志
 包括二进制日志，错误日志，通用查询日志，慢查询日志。
+
+##Mac系统
+
+除了在控制面板中开启和或关闭mysql，还可以使用终端命令行来控制启动，停止和重启：
+
+sudo /Library/StartupItems/MySQLCOM/MySQLCOM [start|stop|restart]
+
