@@ -24,6 +24,7 @@ python的图片处理库PIL（Python Image Library）可以转换图片的类型
     sudo make install
 
 第二步  安装zlib库，安装命令：
+
     tar xfz zlib-1.2.5.tar.gz
     cd zlib-1.2.5
     ./configure
@@ -31,24 +32,27 @@ python的图片处理库PIL（Python Image Library）可以转换图片的类型
     sudo make install
     
 第三步  安装PIL库，安装命令：
+
     tar xfz Imaging-1.1.7.tar.gz
     cd Imaging-1.1.7
     python setup.py build_ext -i
     python setup.py build 
     sudo  python setup.py install
-    说明：python setup.py build_ext –i 命令是用于测试安装PIL库使用支持对哪些格式的图片处理。
-    安装时出现如下：
+    #说明：python setup.py build_ext –i 命令是用于测试安装PIL库使用支持对哪些格式的图片处理。
+    #安装时出现如下：
         JPEG support available
         ZLIB (PNG/ZIP) support available
-    说明前两步安装正确。
+    #说明前两步安装正确。
 
 最后，测试PIL库是否安装成功
 
 在终端输入指令：
+
     $python
     >>>import Image
 
 或者写一个python脚本，代码：
+
     #!/usr/bin/python
     #-*- coding: utf-8 -*-
     import Image
