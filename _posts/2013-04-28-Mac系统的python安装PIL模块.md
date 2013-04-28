@@ -2,6 +2,8 @@
 layout: post
 ---
 
+[来源：python安装Image模块](http://jordy.easymorse.com/?p=760)
+
 python的图片处理库PIL（Python Image Library）可以转换图片的类型，修改图片大小、色值、透明度，将2张图片合成到1张图片。
 
 下载安装PIL文件及依赖文件：
